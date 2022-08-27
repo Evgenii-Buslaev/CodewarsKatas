@@ -4,7 +4,7 @@ Create a function that takes a string and returns the string ciphered with Rot13
 
  */
 
-function rot13(message) {
+/* function rot13(message) {
   let alphabet = "abcdefghijklmnopqrstuvwxyz";
   let alphabetArray = [...alphabet];
 
@@ -38,6 +38,16 @@ function rot13(message) {
     }
   }
   return clipheredMessage;
+} */
+
+function rot13(message) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const clipheredSymbols =
+    "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+  return message.replace(
+    /[a-z]/gi,
+    (element) => clipheredSymbols[alphabet.indexOf(element)]
+  );
 }
 
 console.log(rot13("Test"));
