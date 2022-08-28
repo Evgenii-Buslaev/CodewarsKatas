@@ -9,7 +9,7 @@ scramble('rkqodlw', 'world') ==> True
 scramble('cedewaraaossoqqyt', 'codewars') ==> True
 scramble('katas', 'steak') ==> False */
 
-function scramble(str1, str2) {
+/* function scramble(str1, str2) {
   let counter = 0;
   let str = [...str1];
 
@@ -17,13 +17,22 @@ function scramble(str1, str2) {
     if (str.indexOf(str2[i]) >= 0) {
       str.splice(str.indexOf(str2[i]), 1);
       counter++;
+      if (counter === str2.length) {
+        return true;
+      }
     }
   }
-
-  if (counter === str2.length) {
-    return true;
-  }
   return false;
-}
+} */
 
+function scramble(str1, str2) {
+  let hashtab = [...new Array(256)].map((x) => 0);
+
+  str2.split("").forEach((elem) => hashtab[elem.charCodeAt(0)]++);
+  str1.split("").forEach((elem) => hashtab[elem.charCodeAt(0)]--);
+
+  hashtab = hashtab.filter((x) => x > 0);
+
+  return hashtab.length == 0;
+}
 console.log(scramble("katas", "steak"));
