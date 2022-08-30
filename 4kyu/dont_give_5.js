@@ -17,17 +17,14 @@ Good luck, warrior!
  */
 
 function dontGiveMeFive(start, end) {
-  let result = [];
+  let counter = 0;
   for (let i = start; i <= end; i++) {
-    result.push(i);
-  }
+    if (![...i.toString()].includes("5")) counter++;
 
-  let lengthCounter = 0;
-  for (let j = 0; j < result.length; j++) {
-    if (![...result[j].toString()].includes("5")) lengthCounter++;
+    if (start > 10000) {
+    }
   }
-
-  return lengthCounter;
+  return counter;
 }
 
-console.log(dontGiveMeFive(-17, 9));
+console.log(dontGiveMeFive(-17, 10000));
