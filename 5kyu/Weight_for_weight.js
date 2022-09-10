@@ -13,7 +13,6 @@ Example:
 When two numbers have the same "weight", let us class them as if they were strings (alphabetical ordering) and not numbers:
 
 180 is before 90 since, having the same "weight" (9), it comes before as a string.
-
 All numbers in the list are positive numbers and the list can be empty.
 
 Notes
@@ -21,8 +20,9 @@ it may happen that the input string have leading, trailing whitespaces and more 
 For C: The result is freed. */
 
 function orderWeight(string) {
-  let members = string.split(" ");
-  let weight = [];
+  const members = string.split(" ");
+  const weight = [];
+  const result = [];
 
   for (let i = 0; i < members.length; i++) {
     weight.push({
@@ -34,9 +34,24 @@ function orderWeight(string) {
     });
   }
 
-  let result = [];
+  let initialWeightLength = weight.length;
 
-  return weight;
+  while (result.length !== initialWeightLength) {
+    let heaviestNumber = weight[0].number;
+    let index = 0;
+
+    for (let i = 0, j = 1; i < weight.length, j < weight.length; i++, j++) {
+      if (weight[i].sum > weight[j].sum) {
+        heaviestNumber = weight[i].number;
+        index = i;
+      }
+    }
+
+    weight.splice(index, 1);
+    result.push(heaviestNumber);
+  }
+
+  return result.reverse().join(" ");
 }
 
 console.log(orderWeight("103 123 4444 99 2000"));
