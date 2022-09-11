@@ -22,7 +22,6 @@ For C: The result is freed. */
 function orderWeight(string) {
   const members = string.split(" ");
   const weight = [];
-  const result = [];
 
   for (let i = 0; i < members.length; i++) {
     weight.push({
@@ -34,24 +33,19 @@ function orderWeight(string) {
     });
   }
 
-  let initialWeightLength = weight.length;
-
-  while (result.length !== initialWeightLength) {
-    let heaviestNumber = weight[0].number;
-    let index = 0;
-
-    for (let i = 0, j = 1; i < weight.length, j < weight.length; i++, j++) {
-      if (weight[i].sum > weight[j].sum) {
-        heaviestNumber = weight[i].number;
-        index = i;
-      }
+  let sorted = weight.sort((prev, curr) => {
+    if (prev.sum > curr.sum) return -1;
+    if (prev.sum === curr.sum) {
+      if (prev.number > curr.number) return -1;
+      if (prev.number < curr.number) return 1;
     }
+    if (prev.sum < curr.sum) return 1;
+  });
 
-    weight.splice(index, 1);
-    result.push(heaviestNumber);
-  }
-
-  return result.reverse().join(" ");
+  return sorted
+    .map((elem) => elem.number)
+    .reverse()
+    .join(" ");
 }
 
-console.log(orderWeight("103 123 4444 99 2000"));
+console.log(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));
