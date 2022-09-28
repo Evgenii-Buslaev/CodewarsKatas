@@ -15,7 +15,7 @@ anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) => ['carer', '
 
 anagrams('laser', ['lazing', 'lazy',  'lacer']) => [] */
 
-function countLettersAmount(string) {
+/* function countLettersAmount(string) {
   return [...string].reduce((acc, curr) => {
     acc[curr] = (acc[curr] || 0) + 1;
     return acc;
@@ -46,6 +46,13 @@ function anagrams(word, words) {
     if (isEqual(wordLetters, anagramLetters[i])) result.push(words[i]);
   }
   return result;
+} */
+
+function anagrams(word, words) {
+  word = word.split("").sort().join("");
+  return words.filter(function (v) {
+    return word == v.split("").sort().join("");
+  });
 }
 
 console.log(anagrams("abba", ["aabb", "abcd", "bbaa", "dada"]));
