@@ -20,7 +20,7 @@ the resulting string must be truncated to the exact length provided
 return an empty string if maximum < minimum or length == 0
 minimum and maximum can equal one another and result in a single number repeated for the length of the string */
 
-function ascendDescend(length, min, max) {
+/* function ascendDescend(length, min, max) {
   if (!length || max < min) return "";
 
   let str = min.toString();
@@ -30,7 +30,7 @@ function ascendDescend(length, min, max) {
   while (str.length !== length) {
     let step = up ? 1 : -1;
 
-    if (base === max || (base === min && str.length !== 1)) {
+    if (base === max || (base === min && str.length > min.toString().length)) {
       up = !up;
       step = up ? 1 : -1;
     }
@@ -38,6 +38,24 @@ function ascendDescend(length, min, max) {
     base += step;
   }
   return str;
+} */
+
+function ascendDescend(length, minimum, maximum) {
+  let increase = "";
+  let descending = "";
+  let answer = "";
+  for (let i = minimum; i <= maximum; i++) {
+    increase += i;
+  }
+  for (let j = maximum - 1; j > minimum; j--) {
+    descending += j;
+  }
+
+  for (let k = 0; k < length; k++) {
+    answer += increase;
+    answer += descending;
+  }
+  return answer.slice(0, length);
 }
 
-console.log(ascendDescend(14, 0, 2));
+console.log(ascendDescend(14, 2, 10));
