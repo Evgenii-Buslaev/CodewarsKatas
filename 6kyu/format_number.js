@@ -44,6 +44,7 @@ function formatNumber(number, template) {
       numbers.shift();
     }
   }
+
   return templateArray.join("");
 }
 

@@ -21,7 +21,6 @@ function fibonacci(n) {
 
   function memoized(n) {
     if (n < 2) return n;
-
     if (n in cache) {
       return cache[n];
     } else {
