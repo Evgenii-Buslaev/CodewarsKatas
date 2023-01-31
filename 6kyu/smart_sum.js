@@ -3,7 +3,7 @@
 smartSum(1,2,3,[4,5],6); // returns 21
 smartSum(1,2,[[3,4],5],6); // returns 2 */
 
-function smartSum() {
+/* function smartSum() {
   const res = [];
   const sequence = Array.from(arguments).flat();
 
@@ -16,6 +16,12 @@ function smartSum() {
   }
 
   return res.reduce((acc, curr) => acc + curr);
+} */
+
+function smartSum() {
+  return Array.from(arguments)
+    .flat(Infinity)
+    .reduce((acc, curr) => acc + curr);
 }
 
 console.log(smartSum([1, [2]], 3));
